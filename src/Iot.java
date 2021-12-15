@@ -25,5 +25,11 @@ public class Iot {
 
 
         cdc.displayCourbe(tab,c1);
+        System.out.println("--------------------");
+        tab.affichageTempsReel(c1);
+        System.out.println("--------------------");
+        cdc.displayCourbe(tab,c1);
+
+
     }
 }

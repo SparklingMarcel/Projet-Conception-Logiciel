@@ -14,8 +14,14 @@ public class TableauDeBord {
 
     public void affichageRegu(Capteur c) {
         for(DataCapteur val: this.centraleMere.infoCapteur(c)) {
-            System.out.println(val.getDate()+" "+val.getHour()+" "+val.getValeur());
+            System.out.println(val+"\n");
         }
+    }
+
+    public void affichageTempsReel(Capteur c) {
+        c.addData();
+        ArrayList<DataCapteur> data = this.centraleMere.getAllDataCapteur().get(c);
+        System.out.println(data.get(data.size()-1));
     }
 
     public void displayCapteurVal(double val) {
@@ -26,7 +32,7 @@ public class TableauDeBord {
     public void displayCourbe(ArrayList<DataCapteur> valCapteur) {
 
         for(DataCapteur val: valCapteur) {
-            System.out.println(val.getDate()+" "+val.getHour()+" "+val.getValeur());
+            System.out.println(val+"\n");
         }
     }
 

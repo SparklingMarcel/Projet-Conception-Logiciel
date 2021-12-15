@@ -23,8 +23,8 @@ public class Capteur implements Subscriber {
     }
 
 
-    private void addData() {
-        this.centralMere.addData(this);
+    public void addData() {
+        this.centralMere.addData(this,this.getData());
     }
 
     @Override

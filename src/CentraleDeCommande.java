@@ -18,9 +18,10 @@ public class CentraleDeCommande {
     }
 
 
-    public void addData(Subscriber s) {
-        this.allDataCapteur.get(s).add(s.getData());
+    public void addData(Capteur c,DataCapteur data) {
+        this.allDataCapteur.get(c).add(data);
     }
+
     public void unsubscribe(Subscriber s) {
         this.capteurSubbed.remove(s);
         this.allDataCapteur.remove(s);
@@ -48,5 +49,9 @@ public class CentraleDeCommande {
 
     public ArrayList<DataCapteur> infoCapteur(Capteur c) {
         return this.allDataCapteur.get(c);
+    }
+
+    public HashMap<Subscriber, ArrayList<DataCapteur>> getAllDataCapteur() {
+        return allDataCapteur;
     }
 }

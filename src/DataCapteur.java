@@ -31,4 +31,11 @@ public class DataCapteur {
     public String getRefCapteur() {
         return refCapteur;
     }
+
+    @Override
+    public String toString() {
+        return "date=" + date +
+                ", hour=" + hour +
+                ", valeur=" + valeur ;
+    }
 }
