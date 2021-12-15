@@ -15,13 +15,15 @@ public class Iot {
         Capteur c1 = new Capteur("babla",cdc);
         Capteur c2 = new Capteur("blibli",cdc);
 
-        TableauDeBord tab = new TableauDeBord();
+        TableauDeBord tab = new TableauDeBord(cdc);
 
         cdc.subscribe(c1);
         cdc.subscribe(c2);
 
         cdc.getDataSub();
-        cdc.addTableau(tab);
+        cdc.getDataSub();
+
+
         cdc.displayCourbe(tab,c1);
     }
 }

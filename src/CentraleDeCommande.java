@@ -45,4 +45,8 @@ public class CentraleDeCommande {
     public void displayCourbe(TableauDeBord tab, Capteur c){
         tab.displayCourbe(this.allDataCapteur.get(c));
     }
+
+    public ArrayList<DataCapteur> infoCapteur(Capteur c) {
+        return this.allDataCapteur.get(c);
+    }
 }

@@ -2,6 +2,7 @@ package src;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Random;
 
 
 public class Capteur implements Subscriber {
@@ -33,6 +34,7 @@ public class Capteur implements Subscriber {
 
     @Override
     public DataCapteur getData() {
+        this.valeur = new Random().nextInt(30);
         return new DataCapteur(LocalDate.now(), LocalDateTime.now().getHour(),this.ref,this.valeur);
     }
 
