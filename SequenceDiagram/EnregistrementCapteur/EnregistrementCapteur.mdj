@@ -63,8 +63,8 @@
 												"$ref": "AAAAAAF9vc07cPYYwpM="
 											},
 											"font": "Arial;13;0",
-											"left": 32.72998046875,
-											"top": 13,
+											"left": 24.72998046875,
+											"top": 5,
 											"width": 225.732421875,
 											"height": 13,
 											"text": "SequenceDiagram_EnregistrerCapteur"
@@ -76,16 +76,14 @@
 												"$ref": "AAAAAAF9vc07cPYYwpM="
 											},
 											"font": "Arial;13;1",
-											"left": 13,
-											"top": 13,
+											"left": 5,
+											"top": 5,
 											"width": 14.72998046875,
 											"height": 13,
 											"text": "sd"
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 8,
-									"top": 8,
 									"width": 921,
 									"height": 785,
 									"nameLabel": {
@@ -137,7 +135,7 @@
 													"top": 47,
 													"width": 62.736328125,
 													"height": 13,
-													"text": "L'IoT"
+													"text": "u: user"
 												},
 												{
 													"_type": "LabelView",
@@ -551,92 +549,93 @@
 								},
 								{
 									"_type": "UMLSeqMessageView",
-									"_id": "AAAAAAF9vdPA4Pafz+M=",
+									"_id": "AAAAAAF9wtWEKvni9o8=",
 									"_parent": {
 										"$ref": "AAAAAAF9vc07cPYXzz0="
 									},
 									"model": {
-										"$ref": "AAAAAAF9vdPA4PaeXCo="
+										"$ref": "AAAAAAF9wtWEKvnhvB0="
 									},
 									"subViews": [
 										{
 											"_type": "EdgeLabelView",
-											"_id": "AAAAAAF9vdPA4PagFLM=",
+											"_id": "AAAAAAF9wtWEKvnjang=",
 											"_parent": {
-												"$ref": "AAAAAAF9vdPA4Pafz+M="
+												"$ref": "AAAAAAF9wtWEKvni9o8="
 											},
 											"model": {
-												"$ref": "AAAAAAF9vdPA4PaeXCo="
+												"$ref": "AAAAAAF9wtWEKvnhvB0="
 											},
 											"font": "Arial;13;0",
-											"left": 156,
-											"top": 220,
-											"width": 263.00244140625,
+											"left": 210,
+											"top": 212,
+											"width": 148.611328125,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 10,
 											"hostEdge": {
-												"$ref": "AAAAAAF9vdPA4Pafz+M="
+												"$ref": "AAAAAAF9wtWEKvni9o8="
 											},
 											"edgePosition": 1,
-											"text": "3 : ConfirmationEnregistrement(refCapteur)"
+											"text": "3 : affichage confirmation"
 										},
 										{
 											"_type": "EdgeLabelView",
-											"_id": "AAAAAAF9vdPA4Pah1nk=",
+											"_id": "AAAAAAF9wtWEKvnk5XI=",
 											"_parent": {
-												"$ref": "AAAAAAF9vdPA4Pafz+M="
+												"$ref": "AAAAAAF9wtWEKvni9o8="
 											},
 											"model": {
-												"$ref": "AAAAAAF9vdPA4PaeXCo="
+												"$ref": "AAAAAAF9wtWEKvnhvB0="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 287,
-											"top": 235,
+											"left": 284,
+											"top": 227,
 											"height": 13,
 											"alpha": 1.5707963267948966,
 											"distance": 25,
 											"hostEdge": {
-												"$ref": "AAAAAAF9vdPA4Pafz+M="
+												"$ref": "AAAAAAF9wtWEKvni9o8="
 											},
 											"edgePosition": 1
 										},
 										{
 											"_type": "EdgeLabelView",
-											"_id": "AAAAAAF9vdPA4PaiorI=",
+											"_id": "AAAAAAF9wtWEKvnl54Y=",
 											"_parent": {
-												"$ref": "AAAAAAF9vdPA4Pafz+M="
+												"$ref": "AAAAAAF9wtWEKvni9o8="
 											},
 											"model": {
-												"$ref": "AAAAAAF9vdPA4PaeXCo="
+												"$ref": "AAAAAAF9wtWEKvnhvB0="
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 288,
-											"top": 200,
+											"left": 285,
+											"top": 192,
 											"height": 13,
 											"alpha": -1.5707963267948966,
 											"distance": 10,
 											"hostEdge": {
-												"$ref": "AAAAAAF9vdPA4Pafz+M="
+												"$ref": "AAAAAAF9wtWEKvni9o8="
 											},
 											"edgePosition": 1
 										},
 										{
 											"_type": "UMLActivationView",
-											"_id": "AAAAAAF9vdPA4Pajasw=",
+											"_id": "AAAAAAF9wtWEKvnmO1U=",
 											"_parent": {
-												"$ref": "AAAAAAF9vdPA4Pafz+M="
+												"$ref": "AAAAAAF9wtWEKvni9o8="
 											},
 											"model": {
-												"$ref": "AAAAAAF9vdPA4PaeXCo="
+												"$ref": "AAAAAAF9wtWEKvnhvB0="
 											},
+											"visible": false,
 											"font": "Arial;13;0",
-											"left": 101,
-											"top": 216,
+											"left": 108,
+											"top": 208,
 											"width": 14,
-											"height": 29
+											"height": 25
 										}
 									],
 									"font": "Arial;13;0",
@@ -646,18 +645,18 @@
 									"tail": {
 										"$ref": "AAAAAAF9vc6iDfZSVsY="
 									},
-									"points": "463:216;114:216",
+									"points": "463:208;108:208",
 									"nameLabel": {
-										"$ref": "AAAAAAF9vdPA4PagFLM="
+										"$ref": "AAAAAAF9wtWEKvnjang="
 									},
 									"stereotypeLabel": {
-										"$ref": "AAAAAAF9vdPA4Pah1nk="
+										"$ref": "AAAAAAF9wtWEKvnk5XI="
 									},
 									"propertyLabel": {
-										"$ref": "AAAAAAF9vdPA4PaiorI="
+										"$ref": "AAAAAAF9wtWEKvnl54Y="
 									},
 									"activation": {
-										"$ref": "AAAAAAF9vdPA4Pajasw="
+										"$ref": "AAAAAAF9wtWEKvnmO1U="
 									}
 								}
 							]
@@ -696,18 +695,18 @@
 						},
 						{
 							"_type": "UMLMessage",
-							"_id": "AAAAAAF9vdPA4PaeXCo=",
+							"_id": "AAAAAAF9wtWEKvnhvB0=",
 							"_parent": {
 								"$ref": "AAAAAAF9vc07b/YWn+s="
 							},
-							"name": "ConfirmationEnregistrement",
+							"name": "affichage confirmation",
 							"source": {
 								"$ref": "AAAAAAF9vc6iDfZLCD4="
 							},
 							"target": {
 								"$ref": "AAAAAAF9vc1hbvYmug0="
 							},
-							"arguments": "refCapteur"
+							"messageSort": "reply"
 						}
 					],
 					"participants": [
@@ -717,7 +716,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF9vc07b/YWn+s="
 							},
-							"name": "L'IoT",
+							"name": "u",
 							"represent": {
 								"$ref": "AAAAAAF9vc1hbfYlQuA="
 							},
@@ -745,7 +744,8 @@
 					"_parent": {
 						"$ref": "AAAAAAF9vc07bvYV7Z4="
 					},
-					"name": "Role1"
+					"name": "Role1",
+					"type": "user"
 				},
 				{
 					"_type": "UMLAttribute",
