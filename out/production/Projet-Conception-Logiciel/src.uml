@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>src</OriginalElement>
+  <nodes>
+    <node x="444.9108527131783" y="310.0">src.Subscriber</node>
+    <node x="349.1753875968992" y="764.0">src.CentraleDeCommande</node>
+    <node x="17.675387596899213" y="442.0">src.Capteur</node>
+    <node x="0.0" y="1464.0">src.Controller</node>
+    <node x="220.78585271317826" y="0.0">src.DataCapteur</node>
+    <node x="353.03585271317826" y="1206.0">src.TableauDeBord</node>
+    <node x="783.5358527131783" y="0.0">src.Loader</node>
+    <node x="503.1753875968992" y="1508.0">src.Iot</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="src.Capteur" target="src.CentraleDeCommande" relationship="DEPENDENCY">
+      <point x="68.0" y="129.0" />
+      <point x="187.6753875968992" y="722.0" />
+      <point x="204.6753875968992" y="722.0" />
+      <point x="204.6753875968992" y="732.0" />
+      <point x="543.625" y="732.0" />
+      <point x="543.625" y="742.0" />
+      <point x="445.6753875968992" y="742.0" />
+      <point x="-96.5" y="-184.0" />
+    </edge>
+    <edge source="src.CentraleDeCommande" target="src.Capteur" relationship="DEPENDENCY">
+      <point x="-96.5" y="-184.0" />
+      <point x="445.6753875968992" y="742.0" />
+      <point x="543.625" y="742.0" />
+      <point x="543.625" y="732.0" />
+      <point x="204.6753875968992" y="732.0" />
+      <point x="204.6753875968992" y="722.0" />
+      <point x="187.6753875968992" y="722.0" />
+      <point x="68.0" y="129.0" />
+    </edge>
+    <edge source="src.Controller" target="src.CentraleDeCommande" relationship="DEPENDENCY">
+      <point x="106.33333333333337" y="-83.0" />
+      <point x="265.83333333333337" y="1413.0" />
+      <point x="342.53585271317826" y="1413.0" />
+      <point x="342.53585271317826" y="1174.0" />
+      <point x="450.9854651162791" y="1174.0" />
+      <point x="450.9854651162791" y="1154.0" />
+      <point x="445.6753875968992" y="1154.0" />
+      <point x="-96.5" y="184.0" />
+    </edge>
+    <edge source="src.CentraleDeCommande" target="src.Subscriber" relationship="DEPENDENCY">
+      <point x="-96.5" y="-184.0" />
+      <point x="445.6753875968992" y="742.0" />
+      <point x="543.625" y="742.0" />
+      <point x="543.625" y="722.0" />
+      <point x="515.4108527131783" y="722.0" />
+      <point x="0.0" y="39.0" />
+    </edge>
+    <edge source="src.Controller" target="src.TableauDeBord" relationship="TO_ONE">
+      <point x="-106.33333333333331" y="-83.0" />
+      <point x="53.166666666666686" y="1443.0" />
+      <point x="148.5" y="1443.0" />
+      <point x="148.5" y="1393.0" />
+      <point x="444.03585271317826" y="1393.0" />
+      <point x="-91.0" y="83.0" />
+    </edge>
+    <edge source="src.Controller" target="src.TableauDeBord" relationship="CREATE">
+      <point x="0.0" y="-83.0" />
+      <point x="159.5" y="1423.0" />
+      <point x="540.0358527131782" y="1423.0" />
+      <point x="540.0358527131782" y="1413.0" />
+      <point x="626.0358527131782" y="1413.0" />
+      <point x="91.0" y="83.0" />
+    </edge>
+    <edge source="src.Capteur" target="src.DataCapteur" relationship="CREATE">
+      <point x="-51.0" y="-129.0" />
+      <point x="68.67538759689921" y="279.0" />
+      <point x="290.28585271317826" y="279.0" />
+      <point x="-69.5" y="129.0" />
+    </edge>
+    <edge source="src.CentraleDeCommande" target="src.DataCapteur" relationship="DEPENDENCY">
+      <point x="-96.5" y="-184.0" />
+      <point x="445.6753875968992" y="742.0" />
+      <point x="543.625" y="742.0" />
+      <point x="543.625" y="722.0" />
+      <point x="596.4108527131783" y="722.0" />
+      <point x="596.4108527131783" y="289.0" />
+      <point x="515.4108527131783" y="289.0" />
+      <point x="515.4108527131783" y="279.0" />
+      <point x="429.28585271317826" y="279.0" />
+      <point x="69.5" y="129.0" />
+    </edge>
+    <edge source="src.Iot" target="src.CentraleDeCommande" relationship="TO_ONE">
+      <point x="65.0" y="-39.0" />
+      <point x="665.6753875968992" y="1443.0" />
+      <point x="738.5358527131783" y="1443.0" />
+      <point x="738.2858527131783" y="1154.0" />
+      <point x="638.6753875968992" y="1154.0" />
+      <point x="96.5" y="184.0" />
+    </edge>
+    <edge source="src.Iot" target="src.CentraleDeCommande" relationship="DEPENDENCY">
+      <point x="0.0" y="-39.0" />
+      <point x="600.6753875968992" y="1433.0" />
+      <point x="727.5358527131783" y="1433.0" />
+      <point x="727.5358527131783" y="1174.0" />
+      <point x="450.9854651162791" y="1174.0" />
+      <point x="450.9854651162791" y="1154.0" />
+      <point x="445.6753875968992" y="1154.0" />
+      <point x="-96.5" y="184.0" />
+    </edge>
+    <edge source="src.TableauDeBord" target="src.CentraleDeCommande" relationship="TO_ONE">
+      <point x="91.0" y="-83.0" />
+      <point x="626.0358527131782" y="1164.0" />
+      <point x="738.2858527131783" y="1164.0" />
+      <point x="738.2858527131783" y="1154.0" />
+      <point x="638.6753875968992" y="1154.0" />
+      <point x="96.5" y="184.0" />
+    </edge>
+    <edge source="src.TableauDeBord" target="src.DataCapteur" relationship="DEPENDENCY">
+      <point x="-91.0" y="-83.0" />
+      <point x="444.03585271317826" y="1184.0" />
+      <point x="283.78585271317826" y="1184.0" />
+      <point x="283.78585271317826" y="289.0" />
+      <point x="515.4108527131783" y="289.0" />
+      <point x="515.4108527131783" y="279.0" />
+      <point x="429.28585271317826" y="279.0" />
+      <point x="69.5" y="129.0" />
+    </edge>
+    <edge source="src.Iot" target="src.Capteur" relationship="CREATE">
+      <point x="-65.0" y="-39.0" />
+      <point x="535.6753875968992" y="1443.0" />
+      <point x="526.1753875968992" y="1443.0" />
+      <point x="526.1753875968992" y="1403.0" />
+      <point x="159.5" y="1403.0" />
+      <point x="159.5" y="742.0" />
+      <point x="142.78585271317826" y="742.0" />
+      <point x="142.78585271317826" y="732.0" />
+      <point x="119.67538759689921" y="732.0" />
+      <point x="0.0" y="129.0" />
+    </edge>
+    <edge source="src.Capteur" target="src.Subscriber" relationship="REALIZATION">
+      <point x="51.0" y="-129.0" />
+      <point x="170.6753875968992" y="415.0" />
+      <point x="468.4108527131783" y="415.0" />
+      <point x="-47.0" y="39.0" />
+    </edge>
+    <edge source="src.Controller" target="src.Capteur" relationship="TO_MANY">
+      <point x="-106.33333333333331" y="-83.0" />
+      <point x="53.166666666666686" y="1443.0" />
+      <point x="148.5" y="1443.0" />
+      <point x="148.5" y="1393.0" />
+      <point x="131.78585271317826" y="1393.0" />
+      <point x="131.78585271317826" y="742.0" />
+      <point x="51.67538759689921" y="742.0" />
+      <point x="-68.0" y="129.0" />
+    </edge>
+    <edge source="src.Controller" target="src.Capteur" relationship="CREATE">
+      <point x="0.0" y="-83.0" />
+      <point x="159.5" y="1413.0" />
+      <point x="142.78585271317826" y="1413.0" />
+      <point x="142.78585271317826" y="732.0" />
+      <point x="119.67538759689921" y="732.0" />
+      <point x="0.0" y="129.0" />
+    </edge>
+    <edge source="src.CentraleDeCommande" target="src.TableauDeBord" relationship="TO_MANY">
+      <point x="96.5" y="184.0" />
+      <point x="638.6753875968992" y="1154.0" />
+      <point x="738.2858527131783" y="1154.0" />
+      <point x="738.2858527131783" y="1164.0" />
+      <point x="626.0358527131782" y="1164.0" />
+      <point x="91.0" y="-83.0" />
+    </edge>
+    <edge source="src.TableauDeBord" target="src.Capteur" relationship="DEPENDENCY">
+      <point x="-91.0" y="-83.0" />
+      <point x="444.03585271317826" y="1184.0" />
+      <point x="283.78585271317826" y="1184.0" />
+      <point x="283.78585271317826" y="1154.0" />
+      <point x="204.6753875968992" y="1154.0" />
+      <point x="204.6753875968992" y="722.0" />
+      <point x="187.6753875968992" y="722.0" />
+      <point x="68.0" y="129.0" />
+    </edge>
+    <edge source="src.CentraleDeCommande" target="src.TableauDeBord" relationship="DEPENDENCY">
+      <point x="-96.5" y="184.0" />
+      <point x="445.6753875968992" y="1154.0" />
+      <point x="450.9854651162791" y="1154.0" />
+      <point x="450.9854651162791" y="1164.0" />
+      <point x="283.78585271317826" y="1164.0" />
+      <point x="283.78585271317826" y="1184.0" />
+      <point x="444.03585271317826" y="1184.0" />
+      <point x="-91.0" y="-83.0" />
+    </edge>
+    <edge source="src.CentraleDeCommande" target="src.Subscriber" relationship="TO_MANY">
+      <point x="96.5" y="-184.0" />
+      <point x="638.6753875968992" y="742.0" />
+      <point x="554.625" y="742.0" />
+      <point x="554.625" y="415.0" />
+      <point x="562.4108527131783" y="415.0" />
+      <point x="47.0" y="39.0" />
+    </edge>
+    <edge source="src.TableauDeBord" target="src.CentraleDeCommande" relationship="DEPENDENCY">
+      <point x="-91.0" y="-83.0" />
+      <point x="444.03585271317826" y="1184.0" />
+      <point x="283.78585271317826" y="1184.0" />
+      <point x="283.78585271317826" y="1164.0" />
+      <point x="450.9854651162791" y="1164.0" />
+      <point x="450.9854651162791" y="1154.0" />
+      <point x="445.6753875968992" y="1154.0" />
+      <point x="-96.5" y="184.0" />
+    </edge>
+    <edge source="src.Subscriber" target="src.DataCapteur" relationship="DEPENDENCY">
+      <point x="0.0" y="-39.0" />
+      <point x="515.4108527131783" y="279.0" />
+      <point x="429.28585271317826" y="279.0" />
+      <point x="69.5" y="129.0" />
+    </edge>
+    <edge source="src.Controller" target="src.TableauDeBord" relationship="TO_MANY">
+      <point x="-106.33333333333331" y="-83.0" />
+      <point x="53.166666666666686" y="1443.0" />
+      <point x="148.5" y="1443.0" />
+      <point x="148.5" y="1393.0" />
+      <point x="444.03585271317826" y="1393.0" />
+      <point x="-91.0" y="83.0" />
+    </edge>
+    <edge source="src.Iot" target="src.TableauDeBord" relationship="CREATE">
+      <point x="-65.0" y="-39.0" />
+      <point x="535.6753875968992" y="1443.0" />
+      <point x="526.1753875968992" y="1443.0" />
+      <point x="526.1753875968992" y="1433.0" />
+      <point x="540.0358527131782" y="1433.0" />
+      <point x="540.0358527131782" y="1413.0" />
+      <point x="626.0358527131782" y="1413.0" />
+      <point x="91.0" y="83.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.5315151515151515" showDependencies="true" x="459.5" y="815.0" />
+  <SelectedNodes>
+    <node>src.Controller</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

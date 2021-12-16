@@ -29,14 +29,25 @@ public class CentraleDeCommande {
         }
         return instance;
     }
+
     public void subscribe(Subscriber s) {
         this.capteurSubbed.add(s);
-        this.allDataCapteur.put(s,new ArrayList<DataCapteur>());
+
+        this.allDataCapteur.put(s,new ArrayList<DataCapteur>(){
+            {
+                add(s.getData());
+            }
+        });
+
     }
 
 
     public void addData(Capteur c,DataCapteur data) {
         this.allDataCapteur.get(c).add(data);
+    }
+
+    public DataCapteur getSubData(Subscriber s) {
+        return s.getData();
     }
 
     public void unsubscribe(Subscriber s) {
@@ -49,7 +60,6 @@ public class CentraleDeCommande {
         Runnable helloRunnable = new Runnable() {
             int i = 0;
             public void run() {
-                System.out.println("works");
                 for (Subscriber s : capteurSubbed) {
                     s.workSub();
                 }

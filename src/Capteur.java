@@ -17,7 +17,7 @@ public class Capteur implements Subscriber {
 
     public Capteur(String r) {
         this.ref = r ;
-        this.valeur = 0;
+        this.valeur = new Random().nextInt(55);
         this.updateCapteur(this);
     }
 

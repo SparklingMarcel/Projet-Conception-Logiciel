@@ -46,12 +46,12 @@ public class Controller {
     public ComboBox methodTab2;
     @FXML
     public ComboBox methodTab3;
-    private HashMap<TableauDeBord,ComboBox[]> allCombo = new HashMap<>() ;
+    private HashMap<TableauDeBord, ComboBox[]> allCombo = new HashMap<>();
     private ComboBox[] capteurCombo;
-    private HashMap<String,Capteur> capteurRef = new HashMap<>();
+    private HashMap<String, Capteur> capteurRef = new HashMap<>();
     private ComboBox[] methodCombo;
-    private HashMap<TableauDeBord,Text> tableau = new HashMap<>() ;
-    private HashMap<TableauDeBord,ScrollPane> scrollpane = new HashMap<>() ;
+    private HashMap<TableauDeBord, Text> tableau = new HashMap<>();
+    private HashMap<TableauDeBord, ScrollPane> scrollpane = new HashMap<>();
     private Text text1 = new Text();
     private Text text2 = new Text();
     private Text text3 = new Text();
@@ -62,63 +62,83 @@ public class Controller {
     public void ajoutCapteur() {
         Capteur c = new Capteur(UUID.randomUUID().toString());
         CentraleDeCommande.getInstance().subscribe(c);
-        capteurRef.put(c.getRef(),c);
+        capteurRef.put(c.getRef(), c);
 
-        for(ComboBox box : capteurCombo) {
+        for (ComboBox box : capteurCombo) {
             box.getItems().add(c.getRef());
         }
 
     }
 
-    public void consulter(TableauDeBord tab,Capteur c, String methode) {
-        if(c != null && methode != null) {
-                    Platform.runLater(new Runnable() {
-                        String value = "";
-                        Text txt = tableau.get(tab);
-                        public void run() {
+    /*public void consulter(TableauDeBord tab, Capteur c, String methode) {
+        if (c != null && methode != null) {
+            Platform.runLater(new Runnable() {
+                String value = "";
+                Text txt = tableau.get(tab);
+
+                public void run() {
 
 
-                            if(methode.equals("courbe")) {
-                                displayCourbe(tab,c);
+                    if (methode.equals("courbe")) {
+                        displayCourbe(tab, c);
 
-                            }
-                            else if(methode.equals("histogramme")) {
-                                CentraleDeCommande.getInstance().displayHistogramme(tab,c);
-                            }
-                            else {
-                                scrollpane.get(tab).setContent(tableau.get(tab));
-                                value = CentraleDeCommande.getInstance().displayTempsReel(tab, c);
-                                txt.setText(value);
-                            }
-                        }
-                    });
+                    } else if (methode.equals("histogramme")) {
+                        CentraleDeCommande.getInstance().displayHistogramme(tab, c);
+                    } else {
+                        scrollpane.get(tab).setContent(tableau.get(tab));
+                        value = CentraleDeCommande.getInstance().displayTempsReel(tab, c);
+                        txt.setText(value);
+                    }
                 }
-            }
+            });
+        }
+    } */
 
-    public void affichageReel(TableauDeBord tab,Capteur c, String methode)     {
+    public void affichageReel(TableauDeBord tab, Capteur c) {
 
+        String value = CentraleDeCommande.getInstance().displayTempsReel(tab, c);
+        tableau.get(tab).setText(value);
     }
 
-    public void displayCourbe(TableauDeBord tab,Capteur c) {
+    public LineChart<Number, Number> displayCourbe(TableauDeBord tab, Capteur c) {
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
 
         //creating the chart
-        final LineChart<Number,Number> lineChart =
-                new LineChart<Number,Number>(xAxis,yAxis);
+        final LineChart<Number, Number> lineChart =
+                new LineChart<Number, Number>(xAxis, yAxis);
 
+        lineChart.setAnimated(false);
         lineChart.setTitle("Evolution des valeurs du capteur");
-        XYChart.Series series = new XYChart.Series();
+        XYChart.Series<Number,Number> series = new XYChart.Series<Number,Number>();
         series.setName("Over the time");
-        ArrayList<Double> total = CentraleDeCommande.getInstance().displayCourbe(tab,c);
+        ArrayList<Double> total = CentraleDeCommande.getInstance().displayCourbe(tab, c);
         int i = 0;
-        for(Double d : total) {
+        for (Double d : total) {
+            series.getData().add(new XYChart.Data<Number,Number>(i, d));
+            i++;
+        }
+        xAxis.setLabel("Valeur du capteur au cours des" + i * 5 + "dernières secondes");
+        lineChart.getData().add(series);
+        scrollpane.get(tab).setContent(lineChart);
+        return lineChart;
+
+    }
+
+    public void updateCourbe(TableauDeBord tab, Capteur c, LineChart linechart) {
+
+        ArrayList<Double> total = CentraleDeCommande.getInstance().displayCourbe(tab, c);
+        XYChart.Series<Number,Number> series = new XYChart.Series<Number,Number>();
+        int i = 0;
+        for (Double d : total) {
+            XYChart.Data<Number,Number> chart = new XYChart.Data<Number,Number>(i,d);
             series.getData().add(new XYChart.Data(i, d));
             i++;
         }
-        xAxis.setLabel("Valeur du capteur au cours des"+i*5+"dernières secondes");
-        lineChart.getData().add(series);
-        scrollpane.get(tab).setContent(lineChart);
+        series.setName("Over the time");
+        linechart.getData().clear();
+        linechart.getData().add(series);
+
 
     }
 
@@ -126,22 +146,22 @@ public class Controller {
     public void initialize() {
 
 
-        allCombo.put(bord1,new ComboBox[]{comboTab1,methodTab1});
-        allCombo.put(bord2,new ComboBox[]{comboTab2,methodTab2});
-        allCombo.put(bord3,new ComboBox[]{comboTab3,methodTab3});
+        allCombo.put(bord1, new ComboBox[]{comboTab1, methodTab1});
+        allCombo.put(bord2, new ComboBox[]{comboTab2, methodTab2});
+        allCombo.put(bord3, new ComboBox[]{comboTab3, methodTab3});
 
-        capteurCombo = new ComboBox[] {comboTab1,comboTab2,comboTab3};
-        methodCombo = new ComboBox[] {methodTab1,methodTab2,methodTab3};
-        tableau.put(bord1,text1);
-        tableau.put(bord2,text2);
-        tableau.put(bord3,text3);
+        capteurCombo = new ComboBox[]{comboTab1, comboTab2, comboTab3};
+        methodCombo = new ComboBox[]{methodTab1, methodTab2, methodTab3};
+        tableau.put(bord1, text1);
+        tableau.put(bord2, text2);
+        tableau.put(bord3, text3);
 
-        scrollpane.put(bord1,tab1);
-        scrollpane.put(bord2,tab2);
-        scrollpane.put(bord3,tab3);
+        scrollpane.put(bord1, tab1);
+        scrollpane.put(bord2, tab2);
+        scrollpane.put(bord3, tab3);
 
 
-        for(ComboBox box : methodCombo) {
+        for (ComboBox box : methodCombo) {
             box.getItems().add("histogramme");
             box.getItems().add("courbe");
             box.getItems().add("Temps reel");
@@ -151,35 +171,36 @@ public class Controller {
         tab2.setContent(text2);
         tab3.setContent(text3);
 
-        for(Map.Entry<TableauDeBord,ComboBox[]> entry : allCombo.entrySet()) {
-            TableauDeBord box1 = entry.getKey() ;
+        for (Map.Entry<TableauDeBord, ComboBox[]> entry : allCombo.entrySet()) {
+            TableauDeBord box1 = entry.getKey();
             ComboBox[] box2 = entry.getValue();
-            box2[0].valueProperty().addListener(new ChangeListener<String>() {
-                @Override public void changed(ObservableValue ov, String t, String t1) {
-                    consulter(box1,capteurRef.get(box2[0].getValue()),(String)box2[1].getValue());
-                    Timeline timeline =
+            for (int i = 0; i < 2; i++) {
+                box2[i].valueProperty().addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue ov, String t, String t1) {
+                        if (box2[1].getValue() != null) {
+                            Timeline timeline;
+                            if (box2[1].getValue().equals("courbe")) {
+                                LineChart l = displayCourbe(box1, capteurRef.get(box2[0].getValue()));
+                                timeline =
+                                        new Timeline(new KeyFrame(Duration.millis(5000), e -> updateCourbe(box1, capteurRef.get(box2[0].getValue()),l)));
+                                timeline.setCycleCount(Animation.INDEFINITE); // loop forever
+                                timeline.play();
+                            } else if (box2[1].getValue().equals("Temps reel")) {
+                                scrollpane.get(box1).setContent(tableau.get(box1));
+                                timeline =
+                                        new Timeline(new KeyFrame(Duration.millis(5000), e -> affichageReel(box1, capteurRef.get(box2[0].getValue()))));
+                                timeline.setCycleCount(Animation.INDEFINITE); // loop forever
+                                timeline.play();
+                            } else {
 
-                            new Timeline(new KeyFrame(Duration.millis(5000), e -> consulter(box1,capteurRef.get(box2[0].getValue()),(String)box2[1].getValue())));
-                    timeline.setCycleCount(Animation.INDEFINITE); // loop forever
-                    timeline.play();
-
-                }
-            });
-
-            box2[1].valueProperty().addListener(new ChangeListener<String>() {
-                @Override public void changed(ObservableValue ov, String t, String t1) {
-                    Timeline timeline =
-                            new Timeline(new KeyFrame(Duration.millis(5000), e -> consulter(box1,capteurRef.get(box2[0].getValue()),(String)box2[1].getValue())));
-                    timeline.setCycleCount(Animation.INDEFINITE); // loop forever
-                    timeline.play();
-                }
-            });
+                            }
+                        }
+                    }
+                });
+            }
         }
     }
 
-
-
-
-    
 
 }
