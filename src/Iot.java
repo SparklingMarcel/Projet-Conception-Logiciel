@@ -9,13 +9,13 @@ public class Iot {
     }
 
     public static void main(String[] args) {
-        CentraleDeCommande cdc = new CentraleDeCommande();
+        CentraleDeCommande cdc = CentraleDeCommande.getInstance();
         Iot main = new Iot(cdc);
 
-        Capteur c1 = new Capteur("babla",cdc);
-        Capteur c2 = new Capteur("blibli",cdc);
+        Capteur c1 = new Capteur("babla");
+        Capteur c2 = new Capteur("blibli");
 
-        TableauDeBord tab = new TableauDeBord(cdc);
+        TableauDeBord tab = new TableauDeBord();
 
         cdc.subscribe(c1);
         cdc.subscribe(c2);
@@ -24,11 +24,7 @@ public class Iot {
         cdc.getDataSub();
 
 
-        cdc.displayCourbe(tab,c1);
-        System.out.println("--------------------");
-        tab.affichageTempsReel(c1);
-        System.out.println("--------------------");
-        cdc.displayCourbe(tab,c1);
+
 
 
     }

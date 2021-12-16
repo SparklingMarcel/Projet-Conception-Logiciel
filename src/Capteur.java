@@ -15,10 +15,10 @@ public class Capteur implements Subscriber {
     private double valeur ;
 
 
-    public Capteur(String r, CentraleDeCommande centrale) {
+    public Capteur(String r) {
         this.ref = r ;
         this.valeur = 0;
-        this.centralMere = centrale;
+        this.centralMere = CentraleDeCommande.getInstance();
         this.updateCapteur(this);
     }
 
@@ -27,8 +27,15 @@ public class Capteur implements Subscriber {
     }
 
     public void updateCapteur(Capteur c) {
+
         Runnable helloRunnable = new Runnable() {
+            int i = 0;
             public void run() {
+                i++;
+                if(i>20) {
+                    c.addData();
+                    i=0;
+                }
                 c.valeur = new Random().nextInt(55);
                 if(c.valeur>50) {
                     c.addData();
@@ -56,5 +63,10 @@ public class Capteur implements Subscriber {
 
     public double getValeur() {
         return valeur;
+    }
+
+    @Override
+    public String toString() {
+        return ref ;
     }
 }

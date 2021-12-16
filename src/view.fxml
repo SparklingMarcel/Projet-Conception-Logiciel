@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controller">
+   <children>
+      <Button fx:id="addCapteur" layoutX="508.0" layoutY="57.0" mnemonicParsing="false" onAction="#ajoutCapteur" text="AJOUTER" />
+      <Label layoutX="316.0" layoutY="61.0" text="Ajouter un Capteur" />
+      <VBox layoutX="27.0" layoutY="36.0" prefHeight="33.0" prefWidth="330.0" />
+      <ScrollPane fx:id="tab1" layoutX="27.0" layoutY="221.0" prefHeight="423.0" prefWidth="303.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="306.0" />
+        </content>
+      </ScrollPane>
+      <ComboBox fx:id="comboTab1" layoutX="338.0" layoutY="234.0" prefHeight="25.0" prefWidth="58.0" />
+      <ComboBox fx:id="comboTab2" layoutX="720.0" layoutY="234.0" prefHeight="25.0" prefWidth="58.0" />
+      <ComboBox fx:id="comboTab3" layoutX="1108.0" layoutY="234.0" prefHeight="25.0" prefWidth="65.0" />
+      <ComboBox fx:id="methodTab1" layoutX="338.0" layoutY="456.0" prefHeight="25.0" prefWidth="58.0" />
+      <ComboBox fx:id="methodTab2" layoutX="712.0" layoutY="456.0" prefHeight="25.0" prefWidth="58.0" />
+      <ComboBox fx:id="methodTab3" layoutX="1102.0" layoutY="456.0" prefHeight="25.0" prefWidth="65.0" />
+      <Label layoutX="346.0" layoutY="209.0" text="Capteur" />
+      <Label layoutX="728.0" layoutY="214.0" text="Capteur" />
+      <Label layoutX="1113.0" layoutY="209.0" text="Capteur" />
+      <Label layoutX="338.0" layoutY="397.0" prefHeight="47.0" prefWidth="72.0" text="méthode&#10;d'affichage&#10;" />
+      <Label layoutX="713.0" layoutY="386.0" prefHeight="47.0" prefWidth="72.0" text="méthode&#10;d'affichage&#10;" />
+      <Label layoutX="1098.0" layoutY="386.0" prefHeight="47.0" prefWidth="72.0" text="méthode&#10;d'affichage&#10;" />
+      <ScrollPane fx:id="tab2" layoutX="410.0" layoutY="222.0" prefHeight="416.0" prefWidth="289.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="306.0" />
+         </content>
+      </ScrollPane>
+      <ScrollPane fx:id="tab3" layoutX="791.0" layoutY="221.0" prefHeight="423.0" prefWidth="283.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="306.0" />
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

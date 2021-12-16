@@ -7,9 +7,9 @@ public class TableauDeBord {
 
     private CentraleDeCommande centraleMere ;
 
-    public TableauDeBord(CentraleDeCommande cdc) {
-        this.centraleMere = cdc;
-        cdc.addTableau(this);
+    public TableauDeBord() {
+        this.centraleMere = CentraleDeCommande.getInstance();
+        CentraleDeCommande.getInstance().addTableau(this);
     }
 
     public void affichageRegu(Capteur c) {
@@ -18,10 +18,12 @@ public class TableauDeBord {
         }
     }
 
-    public void affichageTempsReel(Capteur c) {
-        c.addData();
-        ArrayList<DataCapteur> data = this.centraleMere.getAllDataCapteur().get(c);
-        System.out.println(data.get(data.size()-1));
+    public String affichageTempsReel(ArrayList<DataCapteur> valCapteur) {
+        StringBuilder total = new StringBuilder();
+        for(DataCapteur val: valCapteur) {
+            total.append(val+"\n");
+        }
+        return total.toString();
     }
 
     public void displayCapteurVal(double val) {
@@ -29,11 +31,12 @@ public class TableauDeBord {
     }
 
 
-    public void displayCourbe(ArrayList<DataCapteur> valCapteur) {
-
+    public ArrayList<Double> displayCourbe(ArrayList<DataCapteur> valCapteur) {
+        ArrayList<Double> total = new ArrayList();
         for(DataCapteur val: valCapteur) {
-            System.out.println(val+"\n");
+            total.add(val.getValeur()) ;
         }
+        return total ;
     }
 
     public void displayHistogramme(ArrayList<DataCapteur> valCapteur) {
