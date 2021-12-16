@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Capteur implements Subscriber {
 
-    private CentraleDeCommande centralMere;
+
     private final String ref ;
     private double valeur ;
 
@@ -18,7 +18,6 @@ public class Capteur implements Subscriber {
     public Capteur(String r) {
         this.ref = r ;
         this.valeur = 0;
-        this.centralMere = CentraleDeCommande.getInstance();
         this.updateCapteur(this);
     }
 
@@ -48,12 +47,12 @@ public class Capteur implements Subscriber {
     }
 
     public void addData() {
-        this.centralMere.addData(this,this.getData());
+        CentraleDeCommande.getInstance().addData(this,this.getData());
     }
 
     @Override
     public void workSub() {
-
+        this.addData();
     }
 
     @Override

@@ -2,6 +2,10 @@ package src;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class CentraleDeCommande {
 
@@ -16,7 +20,7 @@ public class CentraleDeCommande {
 
 
     private CentraleDeCommande() {
-
+        workSub();
     }
 
     public static CentraleDeCommande getInstance() {
@@ -41,9 +45,19 @@ public class CentraleDeCommande {
     }
 
     public void workSub() {
-        for (Subscriber s : this.capteurSubbed){
-            s.workSub();
-        }
+
+        Runnable helloRunnable = new Runnable() {
+            int i = 0;
+            public void run() {
+                System.out.println("works");
+                for (Subscriber s : capteurSubbed) {
+                    s.workSub();
+                }
+            }
+        };
+
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleAtFixedRate(helloRunnable, 0, 30, TimeUnit.SECONDS);
     }
 
     public void addTableau(TableauDeBord tab) {
