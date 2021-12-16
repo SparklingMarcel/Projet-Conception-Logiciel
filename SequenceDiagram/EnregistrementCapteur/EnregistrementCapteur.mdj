@@ -355,7 +355,7 @@
 												"$ref": "AAAAAAF9vc+6yfZxisM="
 											},
 											"edgePosition": 1,
-											"text": "1 : enRegistrerCapteur(refCapteur)"
+											"text": "1 : EnregistrerCapteur(refCapteur)"
 										},
 										{
 											"_type": "EdgeLabelView",
@@ -669,7 +669,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF9vc07b/YWn+s="
 							},
-							"name": "enRegistrerCapteur",
+							"name": "EnregistrerCapteur",
 							"source": {
 								"$ref": "AAAAAAF9vc1hbvYmug0="
 							},
