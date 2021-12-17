@@ -3,28 +3,20 @@ package src;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 import javafx.util.Duration;
-import javafx.util.StringConverter;
 
+import java.io.*;
 import java.util.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+
 
 public class Controller {
 
@@ -46,6 +38,17 @@ public class Controller {
     public ComboBox methodTab2;
     @FXML
     public ComboBox methodTab3;
+    @FXML
+    public Button rapButton;
+    @FXML
+    public ComboBox genRapport;
+    @FXML
+    public ComboBox periode1;
+    @FXML
+    public ComboBox periode2;
+    @FXML
+    public TextField xtt;
+
     private HashMap<TableauDeBord, ComboBox[]> allCombo = new HashMap<>();
     private ComboBox[] capteurCombo;
     private HashMap<String, Capteur> capteurRef = new HashMap<>();
@@ -60,39 +63,42 @@ public class Controller {
     private TableauDeBord bord3 = new TableauDeBord();
 
     public void ajoutCapteur() {
-        Capteur c = new Capteur(UUID.randomUUID().toString());
-        CentraleDeCommande.getInstance().subscribe(c);
-        capteurRef.put(c.getRef(), c);
+        if(!xtt.getText().equals("")) {
+            Capteur c = new Capteur(xtt.getText()+" - " +UUID.randomUUID());
+            CentraleDeCommande.getInstance().subscribe(c);
+            capteurRef.put(c.getRef(), c);
+            genRapport.getItems().add(c.getRef());
 
-        for (ComboBox box : capteurCombo) {
-            box.getItems().add(c.getRef());
+            for (ComboBox box : capteurCombo) {
+                box.getItems().add(c.getRef());
+            }
+
         }
 
     }
 
-    /*public void consulter(TableauDeBord tab, Capteur c, String methode) {
-        if (c != null && methode != null) {
-            Platform.runLater(new Runnable() {
-                String value = "";
-                Text txt = tableau.get(tab);
-
-                public void run() {
+    public void generateRapport() {
+        if(genRapport.getValue()!= null) {
+            File selectedFile;
+            final FileChooser chooser = new FileChooser();
 
 
-                    if (methode.equals("courbe")) {
-                        displayCourbe(tab, c);
+            selectedFile = chooser.showSaveDialog(null);
+            if(selectedFile == null ){
+                return ;
+            }
+            String total = CentraleDeCommande.getInstance().getSubDataPeriode(capteurRef.get(genRapport.getValue()),periode1.getValue().toString(),periode2.getValue().toString());
 
-                    } else if (methode.equals("histogramme")) {
-                        CentraleDeCommande.getInstance().displayHistogramme(tab, c);
-                    } else {
-                        scrollpane.get(tab).setContent(tableau.get(tab));
-                        value = CentraleDeCommande.getInstance().displayTempsReel(tab, c);
-                        txt.setText(value);
-                    }
-                }
-            });
+            try (FileWriter bo = new FileWriter(selectedFile)) {
+                bo.write(total);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
         }
-    } */
+    }
 
     public void affichageReel(TableauDeBord tab, Capteur c) {
 
@@ -100,7 +106,8 @@ public class Controller {
         tableau.get(tab).setText(value);
     }
 
-    public LineChart<Number, Number> displayCourbe(TableauDeBord tab, Capteur c) {
+    public LineChart<Number, Number> setupCourbe(TableauDeBord tab, Capteur c) {
+
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
 
@@ -112,32 +119,88 @@ public class Controller {
         lineChart.setTitle("Evolution des valeurs du capteur");
         XYChart.Series<Number,Number> series = new XYChart.Series<Number,Number>();
         series.setName("Over the time");
-        ArrayList<Double> total = CentraleDeCommande.getInstance().displayCourbe(tab, c);
-        int i = 0;
-        for (Double d : total) {
-            series.getData().add(new XYChart.Data<Number,Number>(i, d));
-            i++;
-        }
-        xAxis.setLabel("Valeur du capteur au cours des" + i * 5 + "dernières secondes");
+        xAxis.setLabel("Valeur du capteur ");
         lineChart.getData().add(series);
         scrollpane.get(tab).setContent(lineChart);
         return lineChart;
 
     }
 
+    public void setupChangeListener() {
+        for (Map.Entry<TableauDeBord, ComboBox[]> entry : allCombo.entrySet()) {
+            TableauDeBord box1 = entry.getKey();
+            ComboBox[] box2 = entry.getValue();
+            for (int i = 0; i < 2; i++) {
+                box2[i].valueProperty().addListener(new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue ov, String t, String t1) {
+                        if (box2[1].getValue() != null) {
+                            Timeline timeline;
+                            if (box2[1].getValue().equals("courbe")) {
+                                LineChart l = setupCourbe(box1, capteurRef.get(box2[0].getValue()));
+                                timeline =
+                                        new Timeline(new KeyFrame(Duration.millis(1000), e -> updateCourbe(box1, capteurRef.get(box2[0].getValue()),l)));
+                                timeline.setCycleCount(Animation.INDEFINITE); // loop forever
+                                timeline.play();
+                            } else if (box2[1].getValue().equals("Temps reel")) {
+                                scrollpane.get(box1).setContent(tableau.get(box1));
+                                timeline =
+                                        new Timeline(new KeyFrame(Duration.millis(1000), e -> affichageReel(box1, capteurRef.get(box2[0].getValue()))));
+                                timeline.setCycleCount(Animation.INDEFINITE); // loop forever
+                                timeline.play();
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        genRapport.valueProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue ov, String t, String t1) {
+                periode1.getItems().clear();
+                periode2.getItems().clear();
+                ArrayList<String> dataDate = CentraleDeCommande.getInstance().getSubDate(capteurRef.get(t1));
+                periode1.getItems().addAll(dataDate);
+                periode2.setDisable(true);
+                periode2.getItems().addAll(dataDate);
+
+            }
+        });
+
+        periode1.valueProperty().addListener(new ChangeListener() {
+            @Override
+            public void changed(ObservableValue observableValue, Object o, Object t1) {
+                periode2.setDisable(false);
+
+                periode2.getItems().clear();
+                ArrayList<String> dataDate = CentraleDeCommande.getInstance().getSubDate(capteurRef.get(genRapport.getValue()));
+                for(String s : dataDate) {
+                    if(s.compareTo(String.valueOf(t1))>=1) {
+                        periode2.getItems().add(s);
+                    }
+                }
+            }
+        });
+    }
+
+
     public void updateCourbe(TableauDeBord tab, Capteur c, LineChart linechart) {
 
         ArrayList<Double> total = CentraleDeCommande.getInstance().displayCourbe(tab, c);
-        XYChart.Series<Number,Number> series = new XYChart.Series<Number,Number>();
-        int i = 0;
-        for (Double d : total) {
-            XYChart.Data<Number,Number> chart = new XYChart.Data<Number,Number>(i,d);
-            series.getData().add(new XYChart.Data(i, d));
-            i++;
+        if(!total.isEmpty()) {
+            XYChart.Series<Number,Number> series = new XYChart.Series<Number,Number>();
+            int i = 0;
+            for (Double d : total) {
+                XYChart.Data<Number,Number> chart = new XYChart.Data<Number,Number>(i,d);
+                series.getData().add(new XYChart.Data(i, d));
+                i++;
+            }
+            series.setName("Over the time");
+            linechart.getData().clear();
+            linechart.getData().add(series);
         }
-        series.setName("Over the time");
-        linechart.getData().clear();
-        linechart.getData().add(series);
+
 
 
     }
@@ -162,7 +225,6 @@ public class Controller {
 
 
         for (ComboBox box : methodCombo) {
-            box.getItems().add("histogramme");
             box.getItems().add("courbe");
             box.getItems().add("Temps reel");
         }
@@ -170,36 +232,9 @@ public class Controller {
         tab1.setContent(text1);
         tab2.setContent(text2);
         tab3.setContent(text3);
+        setupChangeListener();
 
-        for (Map.Entry<TableauDeBord, ComboBox[]> entry : allCombo.entrySet()) {
-            TableauDeBord box1 = entry.getKey();
-            ComboBox[] box2 = entry.getValue();
-            for (int i = 0; i < 2; i++) {
-                box2[i].valueProperty().addListener(new ChangeListener<String>() {
-                    @Override
-                    public void changed(ObservableValue ov, String t, String t1) {
-                        if (box2[1].getValue() != null) {
-                            Timeline timeline;
-                            if (box2[1].getValue().equals("courbe")) {
-                                LineChart l = displayCourbe(box1, capteurRef.get(box2[0].getValue()));
-                                timeline =
-                                        new Timeline(new KeyFrame(Duration.millis(5000), e -> updateCourbe(box1, capteurRef.get(box2[0].getValue()),l)));
-                                timeline.setCycleCount(Animation.INDEFINITE); // loop forever
-                                timeline.play();
-                            } else if (box2[1].getValue().equals("Temps reel")) {
-                                scrollpane.get(box1).setContent(tableau.get(box1));
-                                timeline =
-                                        new Timeline(new KeyFrame(Duration.millis(5000), e -> affichageReel(box1, capteurRef.get(box2[0].getValue()))));
-                                timeline.setCycleCount(Animation.INDEFINITE); // loop forever
-                                timeline.play();
-                            } else {
 
-                            }
-                        }
-                    }
-                });
-            }
-        }
     }
 
 

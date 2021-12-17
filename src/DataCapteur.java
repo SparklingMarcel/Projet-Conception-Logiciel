@@ -1,17 +1,19 @@
 package src;
 
-import java.time.LocalDate;
-import java.util.Date;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class DataCapteur {
-    private LocalDate date;
-    private int hour ;
+    private String date;
     private String refCapteur;
     private double valeur;
 
-    public DataCapteur(LocalDate now, int heure, String ref, double val) {
-        this.date = now;
-        this.hour = heure;
+    public DataCapteur(LocalDateTime now, String ref, double val) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        this.date = dtf.format(now);;
+
         this.refCapteur = ref ;
         this.valeur = val ;
     }
@@ -20,13 +22,10 @@ public class DataCapteur {
         return valeur;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public int getHour() {
-        return hour;
-    }
 
     public String getRefCapteur() {
         return refCapteur;
@@ -35,7 +34,6 @@ public class DataCapteur {
     @Override
     public String toString() {
         return "date=" + date +
-                ", hour=" + hour +
                 ", valeur=" + valeur ;
     }
 }

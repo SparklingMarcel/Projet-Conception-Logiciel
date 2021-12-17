@@ -1,6 +1,6 @@
 package src;
 
-import java.time.LocalDate;
+
 import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -27,23 +27,24 @@ public class Capteur implements Subscriber {
 
     public void updateCapteur(Capteur c) {
 
-        Runnable helloRunnable = new Runnable() {
+        Runnable capteurRunnable = new Runnable() {
             int i = 0;
             public void run() {
                 i++;
+                c.valeur = new Random().nextInt(55);
                 if(i>20) {
                     c.addData();
                     i=0;
                 }
-                c.valeur = new Random().nextInt(55);
-                if(c.valeur>50) {
+
+                else if(c.valeur>50) {
                     c.addData();
                 }
             }
         };
 
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(helloRunnable, 0, 1, TimeUnit.SECONDS);
+        executor.scheduleAtFixedRate(capteurRunnable, 0, 1, TimeUnit.SECONDS);
     }
 
     public void addData() {
@@ -57,7 +58,7 @@ public class Capteur implements Subscriber {
 
     @Override
     public DataCapteur getData() {
-        return new DataCapteur(LocalDate.now(), LocalDateTime.now().getHour(),this.ref,this.valeur);
+        return new DataCapteur(LocalDateTime.now(),this.ref,this.valeur);
     }
 
     public double getValeur() {

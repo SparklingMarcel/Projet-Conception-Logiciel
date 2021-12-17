@@ -4,13 +4,14 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="src.Controller">
    <children>
-      <Button fx:id="addCapteur" layoutX="508.0" layoutY="57.0" mnemonicParsing="false" onAction="#ajoutCapteur" text="AJOUTER" />
-      <Label layoutX="316.0" layoutY="61.0" text="Ajouter un Capteur" />
+      <Button fx:id="addCapteur" layoutX="600.0" layoutY="57.0" mnemonicParsing="false" onAction="#ajoutCapteur" text="AJOUTER" />
+      <Label layoutX="179.0" layoutY="61.0" text="Ajouter un Capteur" />
       <VBox layoutX="27.0" layoutY="36.0" prefHeight="33.0" prefWidth="330.0" />
       <ScrollPane fx:id="tab1" layoutX="27.0" layoutY="221.0" prefHeight="423.0" prefWidth="303.0">
         <content>
@@ -39,5 +40,11 @@
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="423.0" prefWidth="306.0" />
          </content>
       </ScrollPane>
+      <ComboBox fx:id="genRapport" layoutX="958.0" layoutY="39.0" prefHeight="26.0" prefWidth="154.0" />
+      <Label layoutX="987.0" layoutY="14.0" prefHeight="18.0" prefWidth="95.0" text="Liste des capteurs" />
+      <Button fx:id="rapButton" layoutX="976.0" layoutY="153.0" mnemonicParsing="false" onAction="#generateRapport" text="Générer un rapport" />
+      <ComboBox fx:id="periode1" layoutX="926.0" layoutY="98.0" prefHeight="26.0" prefWidth="89.0" />
+      <ComboBox fx:id="periode2" layoutX="1053.0" layoutY="98.0" prefHeight="26.0" prefWidth="95.0" />
+      <TextField layoutX="358.0" layoutY="57.0" prefHeight="26.0" prefWidth="175.0" fx:id="xtt" />
    </children>
 </AnchorPane>

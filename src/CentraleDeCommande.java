@@ -2,7 +2,6 @@ package src;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -48,6 +47,34 @@ public class CentraleDeCommande {
 
     public DataCapteur getSubData(Subscriber s) {
         return s.getData();
+    }
+
+    public String getAllSubData(Subscriber s) {
+        StringBuilder total = new StringBuilder();
+        for(DataCapteur val: this.allDataCapteur.get(s)) {
+            total.append(val);
+            total.append("\n");
+        }
+        return total.toString();
+    }
+
+    public ArrayList<String> getSubDate(Subscriber s) {
+        ArrayList<String> total = new ArrayList<>();
+        for(DataCapteur val: this.allDataCapteur.get(s)) {
+            total.add(val.getDate());
+        }
+        return total;
+    }
+
+    public String getSubDataPeriode(Subscriber s,String date1, String date2) {
+        StringBuilder total = new StringBuilder();
+        for(DataCapteur val: this.allDataCapteur.get(s)) {
+            if(val.getDate().compareTo(date2)<=0 && val.getDate().compareTo(date1)>=0) {
+                total.append(val);
+                total.append("\n");
+            }
+        }
+        return total.toString();
     }
 
     public void unsubscribe(Subscriber s) {
