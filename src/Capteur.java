@@ -21,10 +21,17 @@ public class Capteur implements Subscriber {
         this.updateCapteur(this);
     }
 
+
     public String getRef() {
         return ref;
     }
 
+
+    /**
+     * Permet de mettre à jour le capteur avec son propre thread
+     * Le capteur envoie soit ses données toutes les 20 secondes, soit quand il considère que sa valeur est trop haute ( > 50 )
+     * @param c capteur qui s'actualise
+     */
     public void updateCapteur(Capteur c) {
 
         Runnable capteurRunnable = new Runnable() {
@@ -47,15 +54,25 @@ public class Capteur implements Subscriber {
         executor.scheduleAtFixedRate(capteurRunnable, 0, 1, TimeUnit.SECONDS);
     }
 
+    /**
+     * Permet d'ajouter les données du capteur dans la centrale
+     */
     public void addData() {
         CentraleDeCommande.getInstance().addData(this,this.getData());
     }
 
+    /**
+     * WorkSub est appelé par la centrale pour demander à ses capteurs ( subscriber ) d'envoyer leurs données
+     */
     @Override
     public void workSub() {
         this.addData();
     }
 
+    /**
+     *
+     * @return  permet de récupérer les données du capteur
+     */
     @Override
     public DataCapteur getData() {
         return new DataCapteur(LocalDateTime.now(),this.ref,this.valeur);

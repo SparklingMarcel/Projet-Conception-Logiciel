@@ -17,21 +17,26 @@ import javafx.util.Duration;
 import java.io.*;
 import java.util.*;
 
-
+/**
+ * Controller permettant de gérer la vue
+ */
 public class Controller {
 
+    // tab1, tab2, tab3 = les 3 scrollPane permettant d'afficher les tableaux
     @FXML
     public ScrollPane tab1;
     @FXML
     public ScrollPane tab2;
     @FXML
     public ScrollPane tab3;
+    // comboTab1, comboTab2, comboTab3 = Les 3 menus déroulants permettant de choisir le capteur qu'on veut regarder pour chaque tableau
     @FXML
     public ComboBox comboTab1;
     @FXML
     public ComboBox comboTab2;
     @FXML
     public ComboBox comboTab3;
+    // methodTab1, methodTab2, methodTab3 = les 3 menus déroulants permettant de choisir le mode d'affichage pour chaque tableau
     @FXML
     public ComboBox methodTab1;
     @FXML
@@ -39,15 +44,15 @@ public class Controller {
     @FXML
     public ComboBox methodTab3;
     @FXML
-    public Button rapButton;
+    public Button rapButton; // Bouton permettant de générer le rapport
     @FXML
-    public ComboBox genRapport;
+    public ComboBox genRapport; // menu déroulant choisissant le capteur pour la génération du rapport
     @FXML
-    public ComboBox periode1;
+    public ComboBox periode1; // date de début des données de la génération du rapport
     @FXML
-    public ComboBox periode2;
+    public ComboBox periode2; // date de fin des données de la génération du rapport
     @FXML
-    public TextField xtt;
+    public TextField xtt; // lis les inputs de l'utilisateur pour choisir le nom du capteur
 
     private HashMap<TableauDeBord, ComboBox[]> allCombo = new HashMap<>();
     private ComboBox[] capteurCombo;
@@ -62,6 +67,10 @@ public class Controller {
     private TableauDeBord bord2 = new TableauDeBord();
     private TableauDeBord bord3 = new TableauDeBord();
 
+
+    /**
+     * Permet d'ajouter un capteur à la centrale, ainsi que d'ajouter les capteurs dans les menu déroulant (comboBox ) de l'interface graphique
+     */
     public void ajoutCapteur() {
         if(!xtt.getText().equals("")) {
             Capteur c = new Capteur(xtt.getText()+" - " +UUID.randomUUID());
@@ -77,6 +86,9 @@ public class Controller {
 
     }
 
+    /**
+     * Permet de générer un rapport des données d'un capteur choisi sur la période choisie
+     */
     public void generateRapport() {
         if(genRapport.getValue()!= null) {
             File selectedFile;
@@ -100,12 +112,25 @@ public class Controller {
         }
     }
 
+
+    /**
+     * permet d'afficher les données d'un capteur en temps réel
+     * @param tab Le tableau sur lequel doivent être affiché les informations
+     * @param c le capteur dont on veut afficher les informations
+     */
     public void affichageReel(TableauDeBord tab, Capteur c) {
 
         String value = CentraleDeCommande.getInstance().displayTempsReel(tab, c);
         tableau.get(tab).setText(value);
     }
 
+
+    /**
+     * Permet de mettre en forme la courbe initial dans un tableau donné
+     * @param tab Le tableau dans lequel on veut voir affiché la courbe
+     * @param c Le capteur dont les données seront affichées dans le tableau
+     * @return La courbe sous forme d'un objet linechart
+     */
     public LineChart<Number, Number> setupCourbe(TableauDeBord tab, Capteur c) {
 
         final NumberAxis xAxis = new NumberAxis();
@@ -126,6 +151,11 @@ public class Controller {
 
     }
 
+    /**
+     * Permet de mettre en place des observers sur de multiples objets de l'interface graphique
+     * Cela permet de mettre à jour des informations quand l'utilisateur change des données d'un des menus déroulant ( comboBox )
+     * Cela permet par exemple de changer le type d'affichage en temps réel, ou de changer le capteur qu'un tableau observe
+     */
     public void setupChangeListener() {
         for (Map.Entry<TableauDeBord, ComboBox[]> entry : allCombo.entrySet()) {
             TableauDeBord box1 = entry.getKey();
@@ -184,7 +214,12 @@ public class Controller {
         });
     }
 
-
+    /**
+     * Permet de mettre à jour la courbe en temps réel
+     * @param tab le tableau sur lequel on met à jour la courbe
+     * @param c le capteur dont les informations sont affichées
+     * @param linechart l'objet représentant la courbe
+     */
     public void updateCourbe(TableauDeBord tab, Capteur c, LineChart linechart) {
 
         ArrayList<Double> total = CentraleDeCommande.getInstance().displayCourbe(tab, c);
@@ -205,6 +240,9 @@ public class Controller {
 
     }
 
+    /**
+     * Permet de mettre en place toutes les liaisons entre les différents objets de l'interface graphique
+     */
     @FXML
     public void initialize() {
 

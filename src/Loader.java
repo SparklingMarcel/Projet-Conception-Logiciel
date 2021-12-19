@@ -11,6 +11,9 @@ import javafx.stage.WindowEvent;
 
 public class Loader extends Application {
     @Override
+    /**
+     * Classe permettant de charger la vue depuis le fichier view.fxml
+     */
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("view.fxml"));
 
