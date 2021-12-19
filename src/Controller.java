@@ -128,10 +128,9 @@ public class Controller {
     /**
      * Permet de mettre en forme la courbe initial dans un tableau donné
      * @param tab Le tableau dans lequel on veut voir affiché la courbe
-     * @param c Le capteur dont les données seront affichées dans le tableau
      * @return La courbe sous forme d'un objet linechart
      */
-    public LineChart<Number, Number> setupCourbe(TableauDeBord tab, Capteur c) {
+    public LineChart<Number, Number> setupCourbe(TableauDeBord tab) {
 
         final NumberAxis xAxis = new NumberAxis();
         final NumberAxis yAxis = new NumberAxis();
@@ -167,7 +166,7 @@ public class Controller {
                         if (box2[1].getValue() != null) {
                             Timeline timeline;
                             if (box2[1].getValue().equals("courbe")) {
-                                LineChart l = setupCourbe(box1, capteurRef.get(box2[0].getValue()));
+                                LineChart l = setupCourbe(box1);
                                 timeline =
                                         new Timeline(new KeyFrame(Duration.millis(1000), e -> updateCourbe(box1, capteurRef.get(box2[0].getValue()),l)));
                                 timeline.setCycleCount(Animation.INDEFINITE); // loop forever

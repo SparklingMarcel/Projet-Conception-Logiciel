@@ -19,7 +19,7 @@ public class CentraleDeCommande {
      * le constructeur de la centrale permet de lancer le thread de mise à jour
      */
     private CentraleDeCommande() {
-        workSub();
+        workCentrale();
     }
 
     /**
@@ -120,7 +120,7 @@ public class CentraleDeCommande {
     /**
      * Permet de lancer le thread de la centrale qui demande à chaque capteur d'envoyer leurs informations à la centrale toutes les 30 secondes
      */
-    public void workSub() {
+    public void workCentrale() {
 
         Runnable helloRunnable = new Runnable() {
             public void run() {
