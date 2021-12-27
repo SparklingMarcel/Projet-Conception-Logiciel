@@ -3102,12 +3102,12 @@
 										"$ref": "AAAAAAF90w1e2JbrD+w="
 									},
 									"font": "Arial;13;0",
-									"left": 352,
-									"top": 537,
+									"left": 344,
+									"top": 543,
 									"width": 55.65625,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 30,
+									"alpha": -4.338732505116855,
+									"distance": 26.419689627245813,
 									"hostEdge": {
 										"$ref": "AAAAAAF90w1e2Zbta8U="
 									},
@@ -3184,7 +3184,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -96,
+											"top": -16,
 											"height": 13
 										},
 										{
@@ -3194,8 +3194,8 @@
 												"$ref": "AAAAAAF90w2DpZc+fgI="
 											},
 											"font": "Arial;13;1",
-											"left": 418.5,
-											"top": 635.5,
+											"left": 466.5,
+											"top": 627.5,
 											"width": 91,
 											"height": 13,
 											"text": "ChoisirPeriode"
@@ -3208,7 +3208,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -96,
+											"top": -16,
 											"width": 80.9072265625,
 											"height": 13,
 											"text": "(from Model1)"
@@ -3221,14 +3221,14 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -96,
+											"top": -16,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 413.5,
-									"top": 628.5,
+									"left": 461.5,
+									"top": 620.5,
 									"width": 102.46630859375,
 									"height": 25,
 									"stereotypeLabel": {
@@ -3255,7 +3255,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -48,
+									"top": -8,
 									"width": 10,
 									"height": 10
 								},
@@ -3270,7 +3270,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -48,
+									"top": -8,
 									"width": 10,
 									"height": 10
 								},
@@ -3285,7 +3285,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -48,
+									"top": -8,
 									"width": 10,
 									"height": 10
 								},
@@ -3300,7 +3300,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -48,
+									"top": -8,
 									"width": 10,
 									"height": 10
 								},
@@ -3315,15 +3315,15 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -48,
+									"top": -8,
 									"width": 10,
 									"height": 10
 								}
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 392,
-							"top": 624,
+							"left": 440,
+							"top": 616,
 							"width": 144,
 							"height": 35,
 							"nameCompartment": {
@@ -3368,8 +3368,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 326,
-									"top": 599,
+									"left": 349,
+									"top": 596,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -3388,12 +3388,12 @@
 										"$ref": "AAAAAAF90w3AKZffvsY="
 									},
 									"font": "Arial;13;0",
-									"left": 301,
-									"top": 584,
+									"left": 328,
+									"top": 631,
 									"width": 55.65625,
 									"height": 13,
-									"alpha": 1.5707963267948966,
-									"distance": 30,
+									"alpha": -1.1504648409510583,
+									"distance": 22.135943621178654,
 									"hostEdge": {
 										"$ref": "AAAAAAF90w3AKZfhtgU="
 									},
@@ -3411,8 +3411,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 321,
-									"top": 628,
+									"left": 346,
+									"top": 625,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -3430,7 +3430,7 @@
 								"$ref": "AAAAAAF90vwBPk5YXuc="
 							},
 							"lineStyle": 1,
-							"points": "257:611;391:630",
+							"points": "257:608;439:626",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAF90w3AKZfi+lo="

@@ -1464,7 +1464,7 @@
 										"$ref": "AAAAAAF9x+c65reOJTQ="
 									},
 									"edgePosition": 1,
-									"text": " [si mode afficahge == temps reels ou courrbe]"
+									"text": " [si mode afficahge == temps reels ou courbe]"
 								},
 								{
 									"_type": "EdgeLabelView",
@@ -3864,7 +3864,7 @@
 							"target": {
 								"$ref": "AAAAAAF9x/rH7rqHb7M="
 							},
-							"guard": "si mode afficahge == temps reels ou courrbe"
+							"guard": "si mode afficahge == temps reels ou courbe"
 						},
 						{
 							"_type": "UMLTransition",
